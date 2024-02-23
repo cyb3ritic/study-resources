@@ -29,7 +29,7 @@
     - specify browser software and version number
 
 - Content-Length
-    - tells webserver how much data to expect in the wev request.
+    - tells webserver how much data to expect in the web request.
 
 - Accept-Encoding
     - tells webserver what types of compression methods the browser supports.
