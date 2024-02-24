@@ -6,7 +6,7 @@
     - Second level domain
     - sub domain(left hand part)
 
-![DNS hirearchy](../.medias/DNS_hirearchy.png)
+![DNS hirearchy](../../.medias/DNS_hirearchy.png)
 
 
 ### top level domain(tld)
@@ -70,4 +70,4 @@
 - Authoritative DNS server stores the DNS records for a particular domain name and where any updates to your domain name.
     - DNS records all come with a TTL (Time To Live) value(represented in seconds).
 
-![making dns request](../.medias/making_dns_request.png)
+![making dns request](../../.medias/making_dns_request.png)

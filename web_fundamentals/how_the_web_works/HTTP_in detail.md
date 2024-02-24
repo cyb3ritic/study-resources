@@ -10,10 +10,10 @@
 ## HTTP Status Codes
 
 - HTTP status codes
-    - ![http status codes](../.medias/http_status_codes_1.png)
+    - ![http status codes](../../.medias/http_status_codes_1.png)
 
 - Common HTTP status codes
-    - ![common http status codes](../.medias/http_status_codes_2.png)
+    - ![common http status codes](../../.medias/http_status_codes_2.png)
 
 ## Headers
 
