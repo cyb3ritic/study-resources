@@ -29,4 +29,8 @@
 ```bash
 ffuf -w /usr/share/wordlist/namelist.txt -H "Host: FUZZ.website.com" -u http://website_ipaddress
 ```
+example:
+```bash
+ffuf -u https://hackycorp.com -w /usr/share/wordlists/dirb/common.txt -H "Host: FUZZ.hackycorp.com" -fr recon_07 
+```
 
