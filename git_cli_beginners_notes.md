@@ -58,7 +58,7 @@ To send to remote repository:
 If you want to work on an existing Git project, you need to download it to your computer.
 
 To download, you can use this command:
-- ```git clone username@host:/past/to repository```
+- ```git clone username@host:/path/to repository```
 
 Popular Git services will give you the link of your Git repository.
 
