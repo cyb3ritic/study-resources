@@ -1,4 +1,3 @@
-
 # <center>🧙‍♂️ Git Magic: Command Line Edition</center>
 ![got logo](.medias/git_logo.png)
 
