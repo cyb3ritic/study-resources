@@ -1,56 +1,69 @@
+# 🎢 Path Traversal Vulnerability 🎢
 
-# <center>Path Traversal Vulnerability</center>
+- Also known as *directory traversal* or *Local File Inclusion (LFI)*, this vulnerability lets attackers explore and read files (or sometimes even write!) on a target server, like an unauthorized treasure hunt 🏴‍☠️.
 
-- path traversal/directory traversal/Local File Inclusion (LFI)
-- allows attacker to read or write(sometimes) on target server,
- 
+## 🕵️‍♀️ Methodology: Becoming a File Detective 🕵️‍♂️
 
- ## Methodology
+To find path traversal vulnerabilities, you need to *scavenge* the application like a detective, checking every nook and cranny that accepts user input. Here’s your checklist:
 
- - to determine vulnerability, enumerate all parts of the application that accept content from users.
- - includes HTTP GET and POST queries, file upload options and HTML forms.
-    Some examples of check to be performed are:
-    * Are there request parameters which could be used for file-related operations?
-    * Are there unusual file extensions?
-    * Are there interesting variable names?
-    * http://example.com/getUserProfile.jsp?item=ikki.html
-    * http://example.com/index.php?file=content
-    * http://example.com/main.cgi?home=index.html
-    * Is it possible to identify cookies used by the web application for the dynamic generation of pages or templates?
-    * Cookie: ID=d9ccd3f4f9f18cc1:TM=2166255468:LM=1162655568:S=3cFpqbJgMSSPKVMV:TEMPLATE=flower
-    * Cookie: USER=1826cc8f:PSTYLE=GreenDotRed
+- **Check out every user input point**: All the places where users can send data to the server — this includes:
+  - HTTP GET and POST requests
+  - File upload forms 📂
+  - HTML forms
 
+Here are some suspicious **red flags** you might find along the way:
 
-## Path traversal simple case:
+- Are there parameters that seem to handle files or directories?
+  - Example: `http://example.com/getUserProfile.jsp?item=ikki.html`
+- Are there **funky file extensions**?
+- Do you notice any **odd variable names** that make you go, “Hmm...?” 🤔
+  - Example: `http://example.com/index.php?file=content`
+  - Example: `http://example.com/main.cgi?home=index.html`
+  
+- Can you identify any **cookies** used by the application for dynamic page generation?
+  - Example: `Cookie: ID=d9ccd3f4f9f18cc1:TM=2166255468:LM=1162655568:S=3cFpqbJgMSSPKVMV:TEMPLATE=flower`
+  - Example: `Cookie: USER=1826cc8f:PSTYLE=GreenDotRed`
 
-- /etc/passwd
-- /../../../../etc/passwd    ==> traversal path
+## 🚪 Simple Path Traversal Case
 
+Just like taking a shortcut, the attacker uses traversal sequences to move up directories. Classic moves:
 
-## File path traversal, traversal sequences blocked with absolute path bypass
+- `/etc/passwd`
+- `../../../../etc/passwd` (More dots, more folders!)
 
-- application blocks traversal sequences but treats the supplied filename as being relative to a default working directory.
-- absolute path means exact path.
-- just use absolute path like /etc/passwd  or  /etc/hosts.
+## 🛤️ Path Traversal with Absolute Path Bypass
 
+- Sometimes the app blocks traversal sequences but treats the filename as relative to a default working directory.
+- Just throw in an **absolute path** like `/etc/passwd` or `/etc/hosts` to skip the hassle!
 
-## File path traversal, traversal sequences stripped non-recursively
+## 🎭 Path Traversal with Stripped Sequences (Non-Recursive)
 
-- use nested traversal sequences ....// or ....\\/, example: //....//....//....//etc/passwd or /..././..././..././etc/passwd
-- validation mechanism will remove ../ and still we get sensible payload,
-- nested traversal sequences revert to simple traversal sequences when the inner sequence is stripped.
-    * In some cases application blocks input containing path traversal sequences and performs url decode of the input before using it. So you might need to url encode the traversal sequence.
-    * . ==> %2e<br>
-      / ==> %2f<br>
-      % ==> %25
+Some apps try to play it smart by stripping traversal sequences (`../`). But you can still outsmart them! 
 
+Use **nested traversal sequences** like:
 
-## File path traversal, validation of file extension with null byte bypass
+- `....//....//....//etc/passwd`
 
-- Null character %00
-- In some cases server validates the extension of the file.
-- to bypass this validation we use null byte. example: ../../../etc/passwd%00.png (when server allows only .png file).
-    * In some cases you may need to combine all payload example: ....//....//....//etc/passwd%00.png
+Even if the app strips out `../`, you'll still get to your target file like a sneaky ninja 🥷.
 
+- If the app also decodes URLs before using them, try **URL encoding**:
+  - `.` → `%2e`
+  - `/` → `%2f`
+  - `%` → `%25`
 
-<i> <strong> Note: </strong> tool for fuzzing path traversal vulnerability: dotdotpwn</i>
+## 🧙 Path Traversal with Null Byte Bypass
+
+- Some servers only allow files with certain extensions, like `.png`. 
+- Bypass this restriction by using a **null byte** (`%00`). It tells the server: “This is the end of the file name!” But you can trick the server with:
+  
+  `../../../etc/passwd%00.png`
+
+This fools the server into thinking the file ends in `.png`, while secretly you're grabbing `/etc/passwd`!
+
+Combine techniques for even more fun, like:
+
+`....//....//....//etc/passwd%00.png`
+
+> **🔧 Pro Tip:** To fuzz for path traversal vulnerabilities, use the tool `dotdotpwn`.
+
+Happy hacking! 🕵️‍♂️🎉
