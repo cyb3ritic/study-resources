@@ -1,215 +1,253 @@
-# <center>🧙‍♂️ Git Magic: Command Line Edition</center>
-![got logo](.medias/git_logo.png)
+# 🧙‍♂️ Git Magic: Command Line Edition
+
+![Git Logo](.medias/git_logo.png)
 
 ## 🔧 Configure Your Git Persona
 
-Before you dive into the Git world, you need to tell Git who you are. It’s like introducing yourself at a party!
-
-Run these spells:
-- ```git config --global user.email "You@example.com"```
-- ```git config --global user.name "Your Name"```
-
-This sets your identity across all your Git adventures. Want to keep it secret, just for this project? Drop the `--global`!
-
-## 🛠️ Crafting a New Repository
-
-### Step 1: Summon a Project
-
-1. Create a new project directory (your magical workspace).
-2. Enter your lair (open the directory).
-3. Cast the ancient spell:
-   - ```git init```
-
-Boom! You’ve just conjured a new Git repository. ✨
-
-## 📁 Adding Files to Your Spellbook
-
-Adding files isn’t just a flick of the wrist; it requires a command or two.
-
-### Incantations to Add Files:
-- ```git add <filename>```
-- ```git add *``` (This adds everything, like a magical vacuum cleaner!)
-
-Now that your files are staged, lock them into your spellbook with:
-- ```git commit -m "Your magical commit message"```
-
-Congrats, your changes are committed! But hold on, they’re still local.
-
-*Tip: Use ```git status``` to keep tabs on your files, like checking a magical mirror.*
-
-## 🌐 Connecting to a Remote Repository
-
-### ☁️ Choose Your Magical Cloud
-Ready to take your project online so fellow wizards can join in? Time to set up a **remote repository**.
-
-Pick your favorite magic cloud service:
-- [Github](https://github.com) 🐙
-- [Gitlab](https://gitlab.com) 🦊
-- [Bitbucket](https://bitbucket.org) 🦈
-
-Or create your own private sanctuary with [Gogs](https://gogs.io) 🏰.
-
-### 🧩 Assemble the Connection
-First, make sure your changes are in your local repository with ```git commit```.
-
-Now, link your local work to the magical cloud with:
-- ```git remote add origin <server>```
-
-Send your magical artifacts (code) to the cloud:
-- ```git push origin master```
-
-✨ Your code is now soaring through the clouds! ✨
-
-## 🕵️‍♂️ Checkout a Remote Repository
-
-### Download the Magic
-
-Want to work on an existing project? Time to clone it to your local spellbook.
-
-### Incantation to Clone:
-- ```git clone username@host:/path/to/repository```
-
-You’ll get the magic link from your chosen Git service. If it’s on your local network, the spell is:
-- ```git clone /path/to/repository```
-
-### 🔍 Investigate Project History
-To see the entire history of your magical project:
-- ```git log```
-
-It’s like reading the ancient scrolls of your project’s past!
-
-## 🚨 Undoing Spells Gone Wrong
-
-Made a mistake? Don’t panic! If you haven’t pushed it online yet, you can undo it with:
-1) ```git commit --amend```
-
-It’s like saying, “Wait, I meant to add this!” before finalizing the spell.
-
-### Example:
-1) ```git commit -m "Initial commit"```
-2) ```git add forgotten_file```
-3) ```git commit --amend```
-
-If your mistake has already escaped to the cloud, use the time-travel spell:
-- ```git reset --hard <commitID>```
-
-But beware! You’ll lose all changes after that commit. 🕰️
-
-## 🌿 Branching: Multiverse of Code
-
-Branches allow you to work on different features simultaneously, like exploring parallel universes. The **master** branch is the main timeline, but you can create as many branches as you like!
-
-### Commands to Navigate the Multiverse:
-
-To see existing branches:
-- ```git branch```
-
-To create a new branch called feature_x:
-- ```git checkout -b feature_x```
-
-To return to the master timeline:
-- ```git checkout master```
-
-To erase a parallel universe (delete a branch):
-- ```git branch -d feature_x```
-
-To publish your branch to the cloud:
-- ```git push origin <branch>```
-
-To merge your branch with the main timeline:
-- ```git merge <branch>```
-
-## 🔄 Syncing and Merging
-
-Working with others? Keep your project up to date with the latest magical spells from your team:
-- ```git pull```
-
-If you’re in a branch, mix your spells with:
-- ```git merge <branch>```
-
-## 🏷️ Tagging Your Spells
-
-Mark your important commits with a tag for easy identification:
-- ```git tag <tag> <commitID>```
-
-It’s like bookmarking the most powerful spells in your spellbook!
-
-## 🌟 Git Stash: A Quick Hideaway
-
-Imagine you're in the middle of casting a spell (coding), but something urgent comes up. You don't want to commit your half-finished spell. No worries! Just stash it away for safekeeping.
-
-### Hideaway Incantation:
-- ```git stash```
-
-Your work is safely tucked away, and your workspace is clean again. When you're ready to pick up where you left off:
-
-### Recall the Stash:
-- ```git stash pop```
-
-Voila! Your stashed changes are back, just as you left them.
-
-## 🧙‍♂️ Revert a Commit: Undoing with Precision
-
-Sometimes you need to undo a commit but keep your changes safe. Here’s how to roll back without losing anything:
-
-### Revert Spell:
-- ```git revert <commitID>```
-
-This creates a new commit that undoes the changes from the specified commit. It’s like rewriting history with a twist!
-
-## 🛡️ Protect Your Master Branch: Create a Backup
-
-Before you make any big changes to the master branch, create a backup branch just in case.
-
-### Backup Branch Spell:
-- ```git checkout -b master-backup```
-
-Now, if anything goes wrong, you can always return to this safe point.
-
-## 🧩 Interactive Rebase: Rewriting History
-
-If you’re a perfectionist and want to tidy up your commits, you can rewrite your history with an interactive rebase.
-
-### Rebase Spell:
-- ```git rebase -i <commitID>```
-
-This allows you to edit commit messages, squash commits together, or even remove them entirely. Be careful—this is advanced magic!
-
-## 🕹️ Cherry-Picking Commits: Selective Magic
-
-Found a great change in another branch and want to apply it to your current branch without merging everything? Use the cherry-pick spell.
-
-### Cherry-Pick Spell:
-- ```git cherry-pick <commitID>```
-
-It’s like plucking just the ripe cherries you want from a different timeline.
-
-## 🚀 Git Bisect: Hunting Down Bugs
-
-Got a bug, but not sure where it came from? Git Bisect is like a detective, helping you find the exact commit that introduced the bug.
-
-### Start the Investigation:
-- ```git bisect start```
-
-### Mark the Good and Bad Commits:
-- ```git bisect good <commitID>```
-- ```git bisect bad <commitID>```
-
-Git will guide you through the history until the culprit is found!
-
-## 🗝️ SSH Keys: A Secure Passage
-
-Tired of typing your password every time you push to a remote repository? Set up SSH keys for a secure and seamless connection.
-
-### Generate the Key:
-- ```ssh-keygen -t rsa -b 4096 -C "you@example.com"```
-
-### Add the Key to Your Magical Keychain:
-- ```ssh-add ~/.ssh/id_rsa```
-
-### Copy the Key to Your Git Service:
-Find your SSH public key and add it to your Git service’s settings. Now you can push without passwords!
+Before using Git, you need to set up your identity so that your commits are properly attributed to you.
+
+```sh
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
+
+If you want to set it only for a specific project, remove `--global`.
+
+To verify your configuration:
+```sh
+git config --list
+```
 
 ---
 
-And there you have it! You’re now equipped with all the essential spells to navigate the vast world of Git. Go forth, and may your coding adventures be ever successful! 🧙‍♀️✨
+## 🛠️ Creating a New Repository
+
+### Steps:
+1. Create a new project directory:
+   ```sh
+   mkdir my_project
+   cd my_project
+   ```
+2. Initialize a Git repository:
+   ```sh
+   git init
+   ```
+
+This creates a hidden `.git` folder that tracks changes in your project.
+
+To check if your repository has been initialized:
+```sh
+git status
+```
+
+---
+
+## 📁 Adding Files to Git
+
+### Add files to the staging area:
+- Add a specific file:
+  ```sh
+  git add filename
+  ```
+- Add all files in the directory:
+  ```sh
+  git add .
+  ```
+
+### Commit changes:
+```sh
+git commit -m "Your commit message"
+```
+
+To check the current status of your repository:
+```sh
+git status
+```
+
+To view commit history:
+```sh
+git log
+```
+
+---
+
+## 🌐 Connecting to a Remote Repository
+
+### Steps:
+1. Create a repository on GitHub, GitLab, or Bitbucket.
+2. Link your local repository to the remote repository:
+   ```sh
+   git remote add origin <remote_url>
+   ```
+3. Verify the remote repository:
+   ```sh
+   git remote -v
+   ```
+4. Push your local commits to the remote repository:
+   ```sh
+   git push -u origin master
+   ```
+
+---
+
+## 🕵️‍♂️ Cloning a Repository
+
+To download an existing repository from a remote server:
+```sh
+git clone <repository_url>
+```
+
+To clone into a specific directory:
+```sh
+git clone <repository_url> my_directory
+```
+
+---
+
+## 🚨 Undoing Changes
+
+### Undo last commit (without losing changes):
+```sh
+git reset --soft HEAD~1
+```
+
+### Undo last commit (discarding changes):
+```sh
+git reset --hard HEAD~1
+```
+
+### Remove a file from the staging area:
+```sh
+git reset HEAD filename
+```
+
+### Discard local changes in a file:
+```sh
+git checkout -- filename
+```
+
+---
+
+## 🌿 Working with Branches
+
+### Create a new branch:
+```sh
+git branch new-branch
+```
+
+### Switch to a branch:
+```sh
+git checkout new-branch
+```
+
+### Create and switch to a branch in one step:
+```sh
+git checkout -b new-branch
+```
+
+### Merge a branch into master:
+```sh
+git checkout master
+git merge new-branch
+```
+
+### Delete a branch:
+```sh
+git branch -d new-branch
+```
+
+---
+
+## 🔄 Syncing and Updating
+
+### Pull latest changes from remote:
+```sh
+git pull origin master
+```
+
+### Fetch updates without merging:
+```sh
+git fetch origin
+```
+
+### Rebase to keep a clean commit history:
+```sh
+git rebase origin/master
+```
+
+---
+
+## 🏷️ Tagging Commits
+
+### Create a tag:
+```sh
+git tag v1.0.0
+```
+
+### Push tags to remote:
+```sh
+git push origin --tags
+```
+
+---
+
+## 🌟 Stashing Changes
+
+### Save unfinished work:
+```sh
+git stash
+```
+
+### List all stashes:
+```sh
+git stash list
+```
+
+### Retrieve and apply the latest stash:
+```sh
+git stash pop
+```
+
+### Apply a specific stash:
+```sh
+git stash apply stash@{0}
+```
+
+### Drop a stash:
+```sh
+git stash drop stash@{0}
+```
+
+---
+
+## 🧙‍♂️ Summary Table
+
+| Command | Description |
+|---------|-------------|
+| `git config --global user.name "Name"` | Set global username |
+| `git config --global user.email "email"` | Set global email |
+| `git init` | Initialize a new repository |
+| `git add .` | Stage all changes |
+| `git commit -m "message"` | Commit staged changes |
+| `git remote add origin <url>` | Link remote repository |
+| `git push -u origin master` | Push code to master branch |
+| `git pull origin master` | Pull latest changes |
+| `git branch new-branch` | Create a new branch |
+| `git checkout new-branch` | Switch to a branch |
+| `git checkout -b new-branch` | Create and switch to a branch |
+| `git merge new-branch` | Merge a branch into master |
+| `git branch -d new-branch` | Delete a branch |
+| `git log` | View commit history |
+| `git status` | Check current state |
+| `git reset --soft HEAD~1` | Undo last commit (keep changes) |
+| `git reset --hard HEAD~1` | Undo last commit (discard changes) |
+| `git checkout -- filename` | Discard local changes |
+| `git stash` | Stash changes |
+| `git stash pop` | Apply stashed changes |
+| `git stash list` | List all stashes |
+| `git tag v1.0.0` | Create a tag |
+| `git push origin --tags` | Push tags to remote |
+| `git fetch origin` | Fetch updates from remote |
+| `git rebase origin/master` | Rebase local branch |
+
+Now, you're ready to master Git like a pro! 🚀
