@@ -49,3 +49,10 @@ name Engineering
 vlan 20
 name HR
 ```
+
+## What is a Trunk port?
+- In a small network with few VLANs, it is possible to use a separate interface for each VLAN when connecting switches to switches, and switches to routers.
+
+- However, when the number of VLANs increases, this is not viable. It will result in wasted interfaces, and often routers won't have enough interfaces for each VLAN.
+
+- We can use **trunk ports** to carry traffic from multiple VLANs over a single interface
