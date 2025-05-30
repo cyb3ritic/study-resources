@@ -1,21 +1,5 @@
 # <center>🌐 Virtual Local Area Network (VLAN) 🌐</center>
 
----
-
-## 📋 Quick Summary Table
-
-| Concept         | Description                                                                 |
-|-----------------|-----------------------------------------------------------------------------|
-| VLAN            | Logical separation of broadcast domains at Layer 2                           |
-| Access Port     | Carries traffic for a single VLAN (untagged)                                |
-| Trunk Port      | Carries traffic for multiple VLANs (tagged)                                 |
-| Native VLAN     | Default VLAN for untagged frames on a trunk (usually VLAN 1)                |
-| 802.1Q          | Industry standard VLAN tagging protocol                                     |
-| ISL             | Cisco proprietary VLAN tagging protocol (legacy)                            |
-| ROAS            | Router on a Stick – routing between VLANs using subinterfaces               |
-
----
-
 ## ⭐ Key Concepts
 
 - **VLAN**: Segments a physical network into multiple logical networks, improving security and performance.
@@ -25,30 +9,6 @@
 - **Native VLAN**: Untagged traffic on a trunk is assigned to the native VLAN.
 - **VLAN Ranges**: 1-1005 (normal), 1006-4094 (extended).
 - **ROAS**: Allows inter-VLAN routing using a single router interface with subinterfaces.
-
----
-
-## ❓ Important Questions for Revision
-
-1. **What is a VLAN and why is it used?**
-2. **How does an access port differ from a trunk port?**
-3. **What is the purpose of VLAN tagging and how does 802.1Q work?**
-4. **What is the native VLAN and what is its significance?**
-5. **How do you configure a trunk port on a Cisco switch?**
-6. **What is ROAS and how does it enable inter-VLAN routing?**
-7. **What are the VLAN ID ranges and which are reserved?**
-8. **What happens if two switches have different native VLANs on a trunk link?**
-9. **How does VLAN improve network security and performance?**
-10. **What is the difference between ISL and 802.1Q?**
-
----
-
-## 📝 Pro Tips
-
-- Always match native VLANs on both ends of a trunk link to avoid security risks.
-- Use descriptive VLAN names for easier management.
-- Limit the number of VLANs allowed on trunk ports for better control.
-- Regularly verify VLAN and trunk configurations with `show` commands.
 
 ---
 
@@ -191,3 +151,37 @@ switchport trunk allowed vlan remove 20
 - The router interface is configured using **subinterfaces** (g0/0.10). You configure the VLAN tag and IP address on each subinterface.
 - The router will behave as if frames arriving with a certain VLAN tag have arrived on the subinterface configured with that VLAN tag.
 - The router will tag frames sent out of each subinterface with the VLAN tag configured on the subinterface.
+
+```
+interface eth1
+no switchport
+no shutdown
+
+interface eth1.10
+description "subinterface for vlan 10"
+encapsulation dot1q vlan 10
+ip addr 10.0.0.62/26
+```
+
+---
+
+## 📋 Quick Summary Table
+
+| Concept         | Description                                                                 |
+|-----------------|-----------------------------------------------------------------------------|
+| VLAN            | Logical separation of broadcast domains at Layer 2                           |
+| Access Port     | Carries traffic for a single VLAN (untagged)                                |
+| Trunk Port      | Carries traffic for multiple VLANs (tagged)                                 |
+| Native VLAN     | Default VLAN for untagged frames on a trunk (usually VLAN 1)                |
+| 802.1Q          | Industry standard VLAN tagging protocol                                     |
+| ISL             | Cisco proprietary VLAN tagging protocol (legacy)                            |
+| ROAS            | Router on a Stick – routing between VLANs using subinterfaces               |
+
+## 📝 Pro Tips
+
+- Always match native VLANs on both ends of a trunk link to avoid security risks.
+- Use descriptive VLAN names for easier management.
+- Limit the number of VLANs allowed on trunk ports for better control.
+- Regularly verify VLAN and trunk configurations with `show` commands.
+
+---
