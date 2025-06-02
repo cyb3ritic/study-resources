@@ -163,6 +163,78 @@ encapsulation dot1q vlan 10
 ip addr 10.0.0.62/26
 ```
 
+## Native VLAN feature on a router (ROAS)
+
+There are two methods of configuring native VLAM on a router:
+1. Use the command `encapsulation dot1q <vlan-id> native` on the router subinterface,
+```
+interface g0/0
+encapsulation dot1q 10 native
+```
+2. Configure the ip address for the native VLAN on the router's physical interface (the `encapsulation dot1q` command is not necessary)
+
+
+
+## Layer 3 (Multilayer) Switches
+
+- A multilayer switch is capable of both switching and routing.
+- It is 'Layer 3' aware.
+- You can assign ip addresses to its interfaces, like a router
+- You can create virtual interfaces for each VLAN, and assign IP addresses to those interfaces.
+- You can configure routes on it just like routers.
+- It can be used for inter-vlan routing
+
+
+## Inter-VLAN Routing via SVI (Switch Virtual Interfaces)
+
+- SVIs (Switch Virtual Interfaces) are the virtual interfaces you can assign IP addresses to in a multilayer switch.
+- Configure each PC to use the SVI (NOT the router) as their gateway address.
+- To send traffic to different subnets/VLANs, the PCs will send traffic to the switch, and the switch will route the traffic.
+
+![SVI inter-vlan routing](.medias/vlan/svi.png)
+### SVI Configuration Example:
+```
+interface vlan 10
+ description Engineering_VLAN
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+interface vlan 20
+ description HR_VLAN
+ ip address 192.168.20.1 255.255.255.0
+ no shutdown
+ip routing
+```
+
+## ROAS vs SVI Comparison
+
+| Feature | ROAS (Router on a Stick) | SVI (Multilayer Switch) |
+|---------|--------------------------|-------------------------|
+| Hardware | External router with single interface | Layer 3 switch |
+| Performance | Lower (all traffic crosses one link) | Higher (switching hardware) |
+| Cost | Lower initial cost | Higher initial cost |
+| Scalability | Limited by router interface bandwidth | Better for larger networks |
+| Configuration | Subinterfaces on router | Virtual interfaces on switch |
+
+## 🔍 Troubleshooting VLANs
+
+- **Problem**: Hosts in same VLAN cannot communicate
+  **Solution**: Verify VLAN assignments, check for STP issues, confirm port status
+
+- **Problem**: Inter-VLAN routing not working
+  **Solution**: Verify gateway configuration, check routing is enabled, confirm SVI/subinterface configuration
+
+- **Problem**: Trunk link not passing traffic
+  **Solution**: Verify encapsulation matches on both sides, check allowed VLANs, confirm native VLAN matches
+
+### Useful Verification Commands:
+```
+show vlan brief
+show interfaces trunk
+show interfaces status
+show mac address-table
+show ip interface brief
+show running-config interface vlan X
+```
 ---
 
 ## 📋 Quick Summary Table
