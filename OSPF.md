@@ -1,4 +1,4 @@
-# Open Shortest Path First (OSPF)
+# Open Shortest Path First (OSPF) - Part 1
 
 ## Types of dynamic routing protocols
 
@@ -82,3 +82,19 @@ passive-interface g2/0
 # However, the router will continue to send LSAs informing it's neighbors about the subnet configured on the interface.
 # You should always use this command on interfaces which don't have any OSPF neighbors.
 ```
+
+---
+
+# Open Shortest Path First (OSPF) - Part 2
+
+## OSPF cost
+- OSPF's metric is calld **cost**.
+- It is automatically calculated based on the bandwidth (speed) of the interface.
+- It is calculated by dividing a reference bandwidth value by the interface's bandwidth.
+- The default reference bandwidth is 100mbps.
+    - Reference: 100 mbps / Interface: 10 mbps = cost of 10
+    - Reference: 100 mbps / Interface: 100 mbps = cost of 1
+    - Reference: 100 mbps / Interface: 1000 mbps = cost of 1
+    - Reference: 100 mbps / Interface: 10000 mbps = cost of 1
+- All values less than 1 will be converted to 1.
+- Therefore FastEthernet, Gigabit Ethernet, 10 Gig Ethernet, etc are equal and all have a cost of 1 by default
