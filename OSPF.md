@@ -98,3 +98,18 @@ passive-interface g2/0
     - Reference: 100 mbps / Interface: 10000 mbps = cost of 1
 - All values less than 1 will be converted to 1.
 - Therefore FastEthernet, Gigabit Ethernet, 10 Gig Ethernet, etc are equal and all have a cost of 1 by default
+- You can (and should!) change the reference bandwidth with this command:
+`R1(config-router)# auto-cost reference-bandwidth <mega-bits-per-second>`
+    - the command is entered in megabits per second (default is 100)
+    - you should conifigure a reference bandwidth greater than the fastest links in your network. (to allow for future upgrades)
+    - You should configure same reference bandwidth on all OSPF routers in the neighbors.
+
+- Three ways to modify OSPF cost:
+    - Change the **reference bandwidth**:
+    `auto-cost reference-bandwidth <mbps>`
+    - Manual configuration
+    `ip ospf cost <cost>`
+    - Change the **interface bandwidth**:
+    `bandwidth <kbps>`
+
+## OSPF Neighborsf 
