@@ -18,7 +18,7 @@
 - A more specific definition: A LAN is a single **broadcast domain**, including all devices in that broadcast domain.
     - A **broadcast domain** is the group of devices which will receive a broadcast frame (destination MAC FFFF.FFFF.FFFF) sent by any one of the members. 
 
-![LAN images](.medias/vlan/lan.png)
+![LAN images](../.medias/vlan/lan.png)
 
 ## What is a VLAN?
 
@@ -39,7 +39,7 @@ VLANs...
 
 ## VLAN configuration
 
-![basic vlan configuration](.medias/vlan/vlanconf.png)
+![basic vlan configuration](../.medias/vlan/vlanconf.png)
 
 ```cli
 show vlan brief
@@ -79,7 +79,7 @@ name HR
 - ISL is an old Cisco proprietary protocol created before the industry standard IEEE 802.1Q.
 - IEEE 802.1Q is an industry standard protocol created by the IEEE (Institute of Electrical and Electronics Engineers).
 
-![dot1q tag](.medias/vlan/dot1q_tag.png)
+![dot1q tag](../.medias/vlan/dot1q_tag.png)
 
 - The 802.1Q tag is inserted between the **Source** and **Type/Length** fields of the Ethernet frame.
 - The tag is 4 bytes (32 bits) in length.
@@ -87,7 +87,7 @@ name HR
     - Tag Protocol Identifier (TPID)
     - Tag Control Information (TCI)
 
-![dot1q tag detailed dissection](.medias/vlan/dot1q_detailed.png)
+![dot1q tag detailed dissection](../.medias/vlan/dot1q_detailed.png)
 
 1. TPID (Tag Protocol Identifier)
     - 16 bits (2 bytes) in length
@@ -126,7 +126,7 @@ name HR
 
 ## Trunk Configuration
 
-![trunk configuration](.medias/vlan/trunk_configuration.png)
+![trunk configuration](../.medias/vlan/trunk_configuration.png)
 
 ```
 interface g0/0
@@ -191,7 +191,7 @@ encapsulation dot1q 10 native
 - Configure each PC to use the SVI (NOT the router) as their gateway address.
 - To send traffic to different subnets/VLANs, the PCs will send traffic to the switch, and the switch will route the traffic.
 
-![SVI inter-vlan routing](.medias/vlan/svi.png)
+![SVI inter-vlan routing](../.medias/vlan/svi.png)
 ### SVI Configuration Example:
 ```
 interface vlan 10
