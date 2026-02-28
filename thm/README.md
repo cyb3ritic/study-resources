@@ -1,71 +1,37 @@
 
-## 📜 **Table of Contents**
+## 📜 Table of Contents
 
-
-
-| 🔐 **Category**                                  | 🔢 **Rooms** | 🔒 **Rooms Completed by Me** |
-
-| ------------------------------------------------ |:------------:|:---------------------------:|
-
-| **[Introductory Rooms](#intro-rooms)**           |     21       |            9                |
-
-| **[Linux Fundamentals](#linux-fundamentals)**    |      4       |            3                |
-
-| **[Windows Fundamentals](#windows-fundamentals)**|      3       |                             |
-
-| **[Basic Rooms](#basics-rooms)**                 |     14       |            1                |
-
-| **[Reconnaissance](#recon)**                     |     10       |            2                |
-
-| **[Scripting](#scripting)**                      |      7       |                             |
-
-| **[Networking](#networking)**                    |      7       |            5                |
-
-| **[Tooling](#tooling)**                          |     18       |            3                |
-
-| **[Container Security](#container-security)**    |     3        |                              |
-
-| **[Cryptography \& Hashes](#cryptography--hashes)**|      7       |            2                |
-
-| **[Steganography](#steganography)**              |      6       |                             |
-
-| **[Web](#web)**                                  |     33       |            5                |
-
-| **[Android](#android)**                          |      1       |                             |
-
-| **[Forensics](#forensics)**                      |     17       |                             |
-
-| **[Wifi Hacking](#wi-fi-hacking)**               |      1       |            1                |
-
-| **[Reverse Engineering](#reverse-engineering)**  |     9       |                             |
-
-| **[Malware Analysis](#malware-analysis)**        |      8       |                             |
-
-| **[Privilege Escalation](#privesc)**             |     13       |            1               |
-
-| **[Windows](#windows)**                          |      9       |            1                |
-
-| **[Active Directory](#active-directory)**        |      8       |                             |
-
-| **[PCAP Analysis](#pcap-analysis)**              |      4       |                             |
-
-| **[Buffer Overflow](#bufferoverflow)**           |      4       |                             |
-
-| **[Easy CTF](#easy-ctf)**                        |     98       |            11               |
-
-| **[Medium CTF](#medium-ctf)**                    |     99       |             4               |
-
-| **[Hard CTF](#hard-ctf)**                        |     42       |                             |
-
-| **[Insane CTF](#insane-ctf)**                    |      1       |             1               |
-
-| **[Misc](#misc)**                                |     43       |                             |
-
-| **[Special Events](#special-events)**            |     12       |             1               |
-
-| **Total Rooms:**                                 |    **= 502** |          **= 50**           |
-
-
+| 🔐 Category | Rooms | Rooms Completed by Me |
+|-------------|----------|--------------------------|
+| Introductory Rooms | 21 | 9 |
+| Linux Fundamentals | 4 | 3 |
+| Windows Fundamentals | 3 | — |
+| Basic Rooms | 14 | 1 |
+| Reconnaissance | 10 | 2 |
+| Scripting | 7 | — |
+| Networking | 7 | 5 |
+| Tooling | 18 | 3 |
+| Container Security | 3 | — |
+| Cryptography & Hashes | 7 | 2 |
+| Steganography | 6 | — |
+| Web | 33 | 5 |
+| Android | 1 | — |
+| Forensics | 17 | — |
+| WiFi Hacking | 1 | 1 |
+| Reverse Engineering | 9 | — |
+| Malware Analysis | 8 | — |
+| Privilege Escalation | 13 | 1 |
+| Windows | 9 | 1 |
+| Active Directory | 8 | — |
+| PCAP Analysis | 4 | — |
+| Buffer Overflow | 4 | — |
+| Easy CTF | 98 | 11 |
+| Medium CTF | 99 | 4 |
+| Hard CTF | 42 | — |
+| Insane CTF | 1 | 1 |
+| Misc | 43 | — |
+| Special Events | 12 | 1 |
+| **Total Rooms** | **502** | **50** |
 
 
 
